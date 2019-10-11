@@ -3,7 +3,7 @@ variable "autoscaler_additional_settings" {
 }
 
 variable "autoscaler_chart_version" {
-  default = "0.11.2"
+  default = "3.4.0"
 }
 
 variable "autoscaler_enabled" {
