@@ -15,7 +15,7 @@ variable "elasticsearch_port" {
 }
 
 variable "elasticsearch_version" {
-  default = "6.4"
+  default = "7.1"
 }
 
 variable "curator_enabled" {
@@ -48,30 +48,21 @@ variable "ip_whitelist" {
   default     = []
 }
 
-variable "kibana_chart_version" {
-  default = "1.6.0"
+variable "nginx_kibana_chart_version" {
+  default = "5.1.1"
 }
 
-variable "kibana_release_name" {
+variable "nginx_kibana_release_name" {
   default = "kibana"
 }
 
-variable "kibana_namespace" {
+variable "nginx_kibana_namespace" {
   default = "default"
-}
-
-variable "kibana_version" {
-  default = "6.4.3"
 }
 
 variable "oauth_proxy_address" {
   type    = string
   default = ""
-}
-
-variable "selfhosted_kibana_enabled" {
-  description = "Enable deploy Kibana to the Kubernetes cluster "
-  default     = 1
 }
 
 variable "subnet_ids" {

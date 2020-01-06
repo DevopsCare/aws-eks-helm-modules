@@ -7,13 +7,12 @@ data "template_file" "curator-values" {
   }
 }
 
-data "template_file" "kibana-values" {
-  template = file("${path.module}/templates/kibana-values.yaml.tpl")
+data "template_file" "nginx-kibana-values" {
+  template = file("${path.module}/templates/nginx-kibana-values.yaml.tpl")
 
   vars = {
     elasticsearch_endpoint = "https://${aws_elasticsearch_domain.es.endpoint}:${var.elasticsearch_port}"
     expose_enabled         = "true"
-    kibana_version         = var.kibana_version
     oauth_proxy            = var.oauth_proxy_address
   }
 }
