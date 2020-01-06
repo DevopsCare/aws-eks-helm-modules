@@ -26,10 +26,11 @@ resource "null_resource" "issuers" {
 }
 
 resource "helm_release" "certmanager" {
-  name      = "${var.certmanager_release_name}"
-  chart     = "stable/cert-manager"
-  namespace = "${var.certmanager_namespace}"
-  version   = "${var.certmanager_chart_version}"
+  name       = "${var.certmanager_release_name}"
+  chart      = "cert-manager"
+  repository = "https://charts.jetstack.io"
+  namespace  = "${var.certmanager_namespace}"
+  version    = "${var.certmanager_chart_version}"
 
   set {
     name = "webhook.enabled"

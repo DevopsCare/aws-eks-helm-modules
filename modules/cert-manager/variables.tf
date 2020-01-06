@@ -3,7 +3,7 @@ variable "aws_region" {
 }
 
 variable "certmanager_chart_version" {
-  default = "v0.6.0"
+  default = "v0.10.1"
 }
 
 variable "certmanager_namespace" {
