@@ -1,8 +1,3 @@
-data "helm_repository" "coreos" {
-  name = "coreos"
-  url  = "https://s3-eu-west-1.amazonaws.com/coreos-charts/stable/"
-}
-
 module "autoscaler" {
   source       = "./modules/autoscaler"
   aws_region   = local.aws_region
