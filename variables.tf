@@ -54,3 +54,15 @@ variable "eks_cluster" {
 
 variable "cluster_name" {
 }
+
+variable "kube2iam_base_role_arn" {
+  type = string
+}
+
+variable "kube2iam_default_role" {
+  type = string
+}
+
+variable "kube2iam_enabled" {
+  default = 0
+}
