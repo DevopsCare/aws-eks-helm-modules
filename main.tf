@@ -8,7 +8,6 @@ provider "helm" {
     cluster_ca_certificate = base64decode(var.kubernetes_ca_certificate)
     token                  = var.kubernetes_token
     load_config_file       = false
-    version                = "~> 1.9"
   }
 }
 
