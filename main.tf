@@ -4,7 +4,11 @@ provider "helm" {
   tiller_image    = "gcr.io/kubernetes-helm/tiller:${var.tiller_version}"
 
   kubernetes {
-    config_path = "${var.config_output_path}/kubeconfig_${var.cluster_name}"
+    host                   = var.kubernetes_host
+    cluster_ca_certificate = base64decode(var.kubernetes_ca_certificate)
+    token                  = var.kubernetes_token
+    load_config_file       = false
+    version                = "~> 1.9"
   }
 }
 

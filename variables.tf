@@ -9,9 +9,6 @@ variable "ip_whitelist" {
   default = []
 }
 
-variable "config_output_path" {
-}
-
 variable "letsencrypt-email" {
   description = "Email for registration in Letsencrypt"
   default     = "acme@example.com"
@@ -65,4 +62,13 @@ variable "kube2iam_default_role" {
 
 variable "kube2iam_enabled" {
   default = 0
+}
+
+variable "kubernetes_host" {
+}
+
+variable "kubernetes_ca_certificate" {
+}
+
+variable "kubernetes_token" {
 }
