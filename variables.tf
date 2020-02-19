@@ -53,11 +53,13 @@ variable "cluster_name" {
 }
 
 variable "kube2iam_base_role_arn" {
-  type = string
+  type    = string
+  default = "None"
 }
 
 variable "kube2iam_default_role" {
-  type = string
+  type    = string
+  default = "None"
 }
 
 variable "kube2iam_enabled" {
