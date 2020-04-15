@@ -1,5 +1,5 @@
 variable "elasticsearch_endpoint" {
-  type = "string"
+  type = string
 }
 
 variable "elasticsearch_port" {
@@ -7,7 +7,7 @@ variable "elasticsearch_port" {
 }
 
 variable "filebeat_chart_version" {
-  default = "1.4.3"
+  default = "7.6.2"
 }
 
 variable "filebeat_namespace" {

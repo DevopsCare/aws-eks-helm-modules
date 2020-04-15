@@ -1,4 +1,4 @@
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
@@ -8,13 +8,12 @@ spec:
     email: ${email}
     privateKeySecretRef:
       name: letsencrypt-prod
-    dns01:
-      providers:
-      - name: aws
+    solvers:
+    - dns01:
         route53:
           region: ${aws_region}
 ---
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-staging
@@ -24,8 +23,7 @@ spec:
     email: ${email}
     privateKeySecretRef:
       name: letsencrypt-staging
-    dns01:
-      providers:
-      - name: aws
+    solvers:
+    - dns01:
         route53:
           region: ${aws_region}

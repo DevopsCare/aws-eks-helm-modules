@@ -5,7 +5,7 @@ alertmanager:
       fabric8.io/ingress.name: alertmanager
       fabric8.io/ingress.annotations: |-
         kubernetes.io/ingress.class: nginx
-        certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+        cert-manager.io/cluster-issuer: letsencrypt-prod
   %{ if keycloak_enabled }
         nginx.ingress.kubernetes.io/auth-signin: https://${oauth_proxy}/oauth2/start?rd=$request_uri
         nginx.ingress.kubernetes.io/auth-url: https://${oauth_proxy}/oauth2/auth
@@ -38,7 +38,7 @@ grafana:
   service:
     annotations:
       fabric8.io/expose: "true"
-      fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx\ncertmanager.k8s.io/cluster-issuer: letsencrypt-prod"
+      fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx\ncert-manager.io/cluster-issuer: letsencrypt-prod"
       fabric8.io/ingress.name: ${grafana_ingress_name}
 
   grafana.ini:
@@ -76,7 +76,7 @@ prometheus:
       fabric8.io/ingress.name: prometheus
       fabric8.io/ingress.annotations: |-
         kubernetes.io/ingress.class: nginx
-        certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+        cert-manager.io/cluster-issuer: letsencrypt-prod
   %{ if keycloak_enabled }
         nginx.ingress.kubernetes.io/auth-signin: https://${oauth_proxy}/oauth2/start?rd=$request_uri
         nginx.ingress.kubernetes.io/auth-url: https://${oauth_proxy}/oauth2/auth
@@ -167,26 +167,6 @@ prometheus:
           - source_labels: [__meta_kubernetes_pod_name]
             action: replace
             target_label: kubernetes_pod_name
-
-  # EKS Specifics, might be useless.
-  additionalServiceMonitors:
-    - name: "eks"
-      endpoints:
-        - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
-          honorLabels: true
-          interval: 30s
-          port: https-metrics
-          scheme: https
-          tlsConfig:
-            insecureSkipVerify: true
-        - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
-          honorLabels: true
-          interval: 30s
-          path: /metrics/cadvisor
-          port: https-metrics
-          scheme: https
-          tlsConfig:
-            insecureSkipVerify: true
 
 # EKS Specifics https://github.com/helm/charts/issues/10517#issuecomment-469407481
 coreDns:

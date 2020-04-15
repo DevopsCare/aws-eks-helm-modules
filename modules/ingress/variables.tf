@@ -1,5 +1,5 @@
 variable "aws_region" {
-  type = "string"
+  type = string
 }
 
 variable "ingress_namespace" {
@@ -11,5 +11,5 @@ variable "ingress_release_name" {
 }
 
 variable "nginx_chart_version" {
-  default = "1.1.5"
+  default = "1.36.2"
 }

@@ -5,10 +5,12 @@ module "autoscaler" {
 }
 
 resource "helm_release" "overprovisioner" {
-  name      = "overprovisioner"
-  chart     = "stable/cluster-overprovisioner"
-  namespace = "kube-system"
-  values    = [file("${path.module}/values/overprovisioner.yaml")]
+  name       = "overprovisioner"
+  chart      = "cluster-overprovisioner"
+  repository = "https://kubernetes-charts.storage.googleapis.com"
+  namespace  = "kube-system"
+  values     = [file("${path.module}/values/overprovisioner.yaml")]
+  atomic     = true
 
   set {
     name  = "dummy.depends_on"
@@ -21,9 +23,11 @@ resource "helm_release" "overprovisioner" {
 }
 
 resource "helm_release" "metrics-server" {
-  name      = "metrics-server"
-  chart     = "stable/metrics-server"
-  namespace = "kube-system"
+  name       = "metrics-server"
+  chart      = "metrics-server"
+  repository = "https://kubernetes-charts.storage.googleapis.com"
+  namespace  = "kube-system"
+  atomic     = true
 
   values = [
     file("${path.module}/values/metrics-server.yaml"),
@@ -40,10 +44,12 @@ resource "helm_release" "metrics-server" {
 }
 
 resource "helm_release" "kubernetes-dashboard" {
-  name      = "kubernetes-dashboard"
-  chart     = "stable/kubernetes-dashboard"
-  namespace = "kube-system"
-  values    = [file("${path.module}/values/dashboard.yaml")]
+  name       = "kubernetes-dashboard"
+  chart      = "kubernetes-dashboard"
+  repository = "https://kubernetes-charts.storage.googleapis.com"
+  namespace  = "kube-system"
+  values     = [file("${path.module}/values/dashboard.yaml")]
+  atomic     = true
 
   set {
     name  = "dummy.depends_on"
@@ -68,5 +74,7 @@ module "prometheus-operator" {
   keycloak_client_secret = var.keycloak_client_secret
   keycloak_domain        = var.keycloak_domain
   oauth_proxy_address    = var.keycloak_oauth_proxy_address
+
+  prometheus_operator_namespace = kubernetes_namespace.monitoring.id
 }
 

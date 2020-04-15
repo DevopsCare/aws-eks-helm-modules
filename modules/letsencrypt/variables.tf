@@ -1,9 +1,9 @@
 variable "aws_region" {
-  type = "string"
+  type = string
 }
 
 variable "common_name" {
-  type = "string"
+  type = string
 }
 
 variable "email_address" {
@@ -11,7 +11,7 @@ variable "email_address" {
 }
 
 variable "environment" {
-  type = "string"
+  type = string
 }
 
 variable "staging" {

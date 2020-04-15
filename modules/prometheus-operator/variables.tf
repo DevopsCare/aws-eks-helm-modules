@@ -1,5 +1,5 @@
 variable "domain" {
-  type = "string"
+  type = string
 }
 
 variable "grafana_ingress_name" {
@@ -11,11 +11,11 @@ variable "keycloak_enabled" {
   default = false
 }
 variable "keycloak_domain" {
-  type = "string"
+  type = string
   default = ""
 }
 variable "keycloak_client_secret" {
-  type = "string"
+  type = string
   default = ""
 }
 variable "oauth_proxy_address" {
@@ -24,7 +24,7 @@ variable "oauth_proxy_address" {
 }
 
 variable "prometheus_operator_chart_version" {
-  default = "5.0.6"
+  default = "8.12.13"
 }
 
 variable "prometheus_operator_namespace" {

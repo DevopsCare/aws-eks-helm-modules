@@ -4,11 +4,13 @@ data "helm_repository" "jx" {
 }
 
 resource "helm_release" "ingress" {
-  name      = "nginx-ingress"
-  chart     = "stable/nginx-ingress"
-  version   = "1.1.5"
-  namespace = "kube-system"
-  values    = [file("${path.module}/values/nginx.yaml")]
+  name       = "nginx-ingress"
+  chart      = "nginx-ingress"
+  repository = "https://kubernetes-charts.storage.googleapis.com"
+  version    = var.nginx_ingress_helm_chart_version
+  namespace  = "kube-system"
+  values     = [file("${path.module}/values/nginx.yaml")]
+  atomic     = true
 
   set {
     name  = "dummy.depends_on"
@@ -47,10 +49,12 @@ resource "helm_release" "ingress" {
 }
 
 resource "helm_release" "expose-default" {
-  name      = "expose-default"
-  chart     = "jx/exposecontroller"
-  namespace = "default"
-  values    = [file("${path.module}/values/expose.yaml")]
+  name       = "expose-default"
+  chart      = "exposecontroller"
+  repository = "http://chartmuseum.jenkins-x.io"
+  namespace  = "default"
+  values     = [file("${path.module}/values/expose.yaml")]
+  atomic     = true
 
   set {
     name  = "dummy.depends_on"
@@ -68,10 +72,12 @@ resource "helm_release" "expose-default" {
 }
 
 resource "helm_release" "expose-monitoring" {
-  name      = "expose-monitoring"
-  chart     = "jx/exposecontroller"
-  namespace = "monitoring"
-  values    = [file("${path.module}/values/expose.yaml")]
+  name       = "expose-monitoring"
+  chart      = "exposecontroller"
+  repository = "http://chartmuseum.jenkins-x.io"
+  namespace  = "monitoring"
+  values     = [file("${path.module}/values/expose.yaml")]
+  atomic     = true
 
   set {
     name  = "dummy.depends_on"
@@ -88,3 +94,25 @@ resource "helm_release" "expose-monitoring" {
   }
 }
 
+resource "helm_release" "expose-logging" {
+  name       = "expose-default"
+  chart      = "exposecontroller"
+  repository = "http://chartmuseum.jenkins-x.io"
+  namespace  = "logging"
+  values     = [file("${path.module}/values/expose.yaml")]
+  atomic     = true
+
+  set {
+    name  = "dummy.depends_on"
+    value = var.eks_cluster.cluster_id
+  }
+
+  set {
+    name  = "config.domain"
+    value = var.project_fqdn
+  }
+
+  lifecycle {
+    ignore_changes = [keyring]
+  }
+}

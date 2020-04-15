@@ -3,7 +3,11 @@ variable "autoscaler_additional_settings" {
 }
 
 variable "autoscaler_chart_version" {
-  default = "3.4.0"
+  default = "7.2.2"
+}
+
+variable "autoscaler_image_tag" {
+  default = "v1.13.7"
 }
 
 variable "autoscaler_enabled" {
@@ -24,14 +28,14 @@ variable "autoscaler_ssl_cert_path" {
 }
 
 variable "aws_region" {
-  type = "string"
+  type = string
 }
 
 variable "cluster_name" {
-  type = "string"
+  type = string
 }
 
 variable "timeout" {
-  type    = "string"
+  type    = string
   default = 30
 }

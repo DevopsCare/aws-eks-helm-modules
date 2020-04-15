@@ -11,7 +11,7 @@ variable "kube2iam_namespace" {
 }
 
 variable "kube2iam_chart_version" {
-  default = "2.1.0"
+  default = "2.2.0"
 }
 
 variable "kube2iam_additional_settings" {
@@ -19,16 +19,16 @@ variable "kube2iam_additional_settings" {
 }
 
 variable "timeout" {
-  type    = "string"
+  type    = number
   default = 30
 }
 
 variable "kube2iam_base_role_arn" {
-  type    = "string"
+  type    = string
   default = null
 }
 
 variable "kube2iam_default_role" {
-  type    = "string"
+  type    = string
   default = null
 }

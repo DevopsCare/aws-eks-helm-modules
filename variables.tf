@@ -9,6 +9,11 @@ variable "ip_whitelist" {
   default = []
 }
 
+variable "nginx_ingress_helm_chart_version" {
+  type    = string
+  default = "1.36.2"
+}
+
 variable "letsencrypt-email" {
   description = "Email for registration in Letsencrypt"
   default     = "acme@example.com"

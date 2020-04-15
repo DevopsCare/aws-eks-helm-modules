@@ -9,10 +9,14 @@ module "elk" {
   ip_whitelist   = ["10.0.0.0/8"]
   instance_count = "2"
   ebs_size       = "35"
+
+  curator_namespace      = kubernetes_namespace.logging.id
+  nginx_kibana_namespace = kubernetes_namespace.logging.id
 }
 
 module "filebeat" {
   source                 = "./modules/filebeat"
   elasticsearch_endpoint = module.elk.elasticsearch_endpoint
+  filebeat_namespace     = kubernetes_namespace.logging.id
 }
 

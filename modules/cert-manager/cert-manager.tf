@@ -7,13 +7,13 @@ resource "null_resource" "crd" {
 }
 
 resource "local_file" "issuers" {
-  content  = "${data.template_file.issuers.rendered}"
+  content  = data.template_file.issuers.rendered
   filename = "${path.module}/issuers.yaml"
 }
 
 resource "null_resource" "issuers" {
   triggers = {
-    issuers = "${local_file.issuers.id}"
+    issuers = local_file.issuers.id
   }
 
   provisioner "local-exec" {
@@ -22,26 +22,20 @@ resource "null_resource" "issuers" {
     EOT
   }
 
-  depends_on = ["local_file.issuers", "null_resource.crd", "helm_release.certmanager"]
+  depends_on = [local_file.issuers, null_resource.crd, helm_release.certmanager]
 }
 
 resource "helm_release" "certmanager" {
-  name       = "${var.certmanager_release_name}"
+  name       = var.certmanager_release_name
   chart      = "cert-manager"
   repository = "https://charts.jetstack.io"
-  namespace  = "${var.certmanager_namespace}"
-  version    = "${var.certmanager_chart_version}"
-
-  set {
-    name = "webhook.enabled"
-
-    # https://github.com/terraform-providers/terraform-provider-helm/issues/208
-    value = "false"
-  }
+  namespace  = var.certmanager_namespace
+  version    = var.certmanager_chart_version
+  atomic     = true
 
   set {
     name  = "ingressShim.defaultIssuerName"
-    value = "${var.staging ? "letsencrypt-staging" : "letsencrypt-prod"}"
+    value = var.staging ? "letsencrypt-staging" : "letsencrypt-prod"
   }
 
   set {
@@ -49,19 +43,9 @@ resource "helm_release" "certmanager" {
     value = "ClusterIssuer"
   }
 
-  set {
-    name  = "ingressShim.defaultACMEChallengeType"
-    value = "dns01"
-  }
-
-  set {
-    name  = "ingressShim.defaultACMEDNS01ChallengeProvider"
-    value = "aws"
-  }
-
-  depends_on = ["null_resource.crd"]
+  depends_on = [null_resource.crd]
 
   lifecycle {
-    ignore_changes = ["keyring"]
+    ignore_changes = [keyring]
   }
 }

@@ -1,5 +1,5 @@
 variable "aws_region" {
-  type = "string"
+  type = string
 }
 
 variable "external_dns_additional_settings" {
@@ -7,7 +7,7 @@ variable "external_dns_additional_settings" {
 }
 
 variable "external_dns_chart_version" {
-  default = "1.7.3"
+  default = "2.20.12"
 }
 
 variable "external_dns_enabled" {

@@ -23,7 +23,7 @@ variable "curator_enabled" {
 }
 
 variable "curator_chart_version" {
-  default = "1.2.1"
+  default = "2.1.5"
 }
 
 variable "curator_namespace" {
@@ -49,7 +49,7 @@ variable "ip_whitelist" {
 }
 
 variable "nginx_kibana_chart_version" {
-  default = "5.1.1"
+  default = "5.2.0"
 }
 
 variable "nginx_kibana_release_name" {
@@ -57,7 +57,7 @@ variable "nginx_kibana_release_name" {
 }
 
 variable "nginx_kibana_namespace" {
-  default = "default"
+  default = "monitoring"
 }
 
 variable "oauth_proxy_address" {

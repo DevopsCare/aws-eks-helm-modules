@@ -1,7 +1,14 @@
+provider "kubernetes" {
+  version = "~> 1.11.1"
+
+  host = var.kubernetes_host
+  cluster_ca_certificate = base64decode(var.kubernetes_ca_certificate)
+  token                  = var.kubernetes_token
+  load_config_file       = false
+}
+
 provider "helm" {
-  version         = "0.10.2"
-  service_account = "eks-admin"
-  tiller_image    = "gcr.io/kubernetes-helm/tiller:${var.tiller_version}"
+  version         = "~> 1.1.1"
 
   kubernetes {
     host                   = var.kubernetes_host
@@ -11,9 +18,21 @@ provider "helm" {
   }
 }
 
-resource "null_resource" "refresh_helm_cache" {
-  provisioner "local-exec" {
-    command = "helm repo update"
+resource "kubernetes_namespace" "monitoring" {
+  metadata {
+    name = "monitoring"
+  }
+}
+
+resource "kubernetes_namespace" "logging" {
+  metadata {
+    name = "logging"
+  }
+}
+
+resource "kubernetes_namespace" "cert_manager" {
+  metadata {
+    name = "cert-manager"
   }
 }
 
