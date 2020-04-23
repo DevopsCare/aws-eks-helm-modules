@@ -35,7 +35,14 @@ serverBlock: |-
     }
 
     location / {
-      return 301 $scheme://$host/_plugin/kibana$request_uri;
+      proxy_set_header Accept-Encoding "";
+      sub_filter_types *;
+      sub_filter_once off;
+      proxy_buffer_size 128k;
+      proxy_buffers 4 256k;
+      proxy_busy_buffers_size 256k;
+
+      proxy_pass ${elasticsearch_endpoint}/_plugin/kibana/;
     }
 
     location /health-check {
