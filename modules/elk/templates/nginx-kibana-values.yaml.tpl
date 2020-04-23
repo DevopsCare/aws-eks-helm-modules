@@ -35,7 +35,7 @@ serverBlock: |-
     }
 
     location / {
-      return 301 $scheme:$host/_plugin/kibana/;
+      return 301 $scheme://$host/_plugin/kibana$request_uri;
     }
 
     location /health-check {
