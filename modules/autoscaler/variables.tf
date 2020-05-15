@@ -7,7 +7,7 @@ variable "autoscaler_chart_version" {
 }
 
 variable "autoscaler_image_tag" {
-  default = "v1.13.7"
+  default = "v1.16.4"
 }
 
 variable "autoscaler_enabled" {
