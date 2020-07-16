@@ -9,8 +9,11 @@ resource "helm_release" "ingress" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   version    = var.nginx_ingress_helm_chart_version
   namespace  = "kube-system"
-  values     = [file("${path.module}/values/nginx.yaml")]
-  atomic     = true
+
+  values = [templatefile("${path.module}/templates/nginx.yaml.tmpl", {
+    additional_annotations = var.nginx_ingress_additional_annotations
+  })]
+  atomic = true
 
   set {
     name  = "dummy.depends_on"

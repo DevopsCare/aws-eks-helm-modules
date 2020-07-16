@@ -11,6 +11,9 @@ controller:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
       service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
+%{ for key,val in additional_annotations ~}
+      ${key}: ${val}
+%{ endfor ~}
 
   publishService:
     enabled: true

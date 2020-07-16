@@ -14,6 +14,11 @@ variable "nginx_ingress_helm_chart_version" {
   default = "1.36.2"
 }
 
+variable "nginx_ingress_additional_annotations" {
+  type    = map
+  default = {}
+}
+
 variable "letsencrypt-email" {
   description = "Email for registration in Letsencrypt"
   default     = "acme@example.com"
