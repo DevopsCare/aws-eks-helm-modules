@@ -43,11 +43,24 @@ resource "helm_release" "metrics-server" {
   }
 }
 
+resource "kubernetes_secret" "kubernetes-dashboard" {
+  metadata {
+    name      = "kubernetes-dashboard-auth"
+    namespace = kubernetes_namespace.ui.id
+  }
+
+  # https://kubernetes.github.io/ingress-nginx/examples/auth/basic/
+  data = {
+    auth = var.dashboard_basic_auth
+  }
+}
+
 resource "helm_release" "kubernetes-dashboard" {
   name       = "kubernetes-dashboard"
   chart      = "kubernetes-dashboard"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
-  namespace  = "kube-system"
+  repository = "https://kubernetes.github.io/dashboard/"
+  version    = var.dashboard_helm_chart_version
+  namespace  = kubernetes_namespace.ui.id
   values     = [file("${path.module}/values/dashboard.yaml")]
   atomic     = true
 
@@ -59,6 +72,10 @@ resource "helm_release" "kubernetes-dashboard" {
   lifecycle {
     ignore_changes = [keyring]
   }
+
+  depends_on = [
+    kubernetes_secret.kubernetes-dashboard
+  ]
 }
 
 module "external-dns" {

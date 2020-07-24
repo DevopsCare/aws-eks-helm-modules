@@ -1,14 +1,14 @@
 provider "kubernetes" {
   version = "~> 1.11.1"
 
-  host = var.kubernetes_host
+  host                   = var.kubernetes_host
   cluster_ca_certificate = base64decode(var.kubernetes_ca_certificate)
   token                  = var.kubernetes_token
   load_config_file       = false
 }
 
 provider "helm" {
-  version         = "~> 1.1.1"
+  version = "~> 1.1.1"
 
   kubernetes {
     host                   = var.kubernetes_host
@@ -21,6 +21,12 @@ provider "helm" {
 resource "kubernetes_namespace" "monitoring" {
   metadata {
     name = "monitoring"
+  }
+}
+
+resource "kubernetes_namespace" "ui" {
+  metadata {
+    name = "ui"
   }
 }
 

@@ -9,6 +9,17 @@ variable "ip_whitelist" {
   default = []
 }
 
+variable "dashboard_helm_chart_version" {
+  type    = string
+  default = "2.3.0"
+}
+
+# default: admin bT2s3yNtK8oQPMeR
+variable "dashboard_basic_auth" {
+  type    = string
+  default = "admin:$apr1$FmDTIlPt$vaQ6Fi9vTNFxJXvYyDc6o0"
+}
+
 variable "nginx_ingress_helm_chart_version" {
   type    = string
   default = "1.36.2"

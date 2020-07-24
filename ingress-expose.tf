@@ -74,6 +74,33 @@ resource "helm_release" "expose-default" {
   }
 }
 
+resource "helm_release" "expose-ui" {
+  name       = "expose-default"
+  chart      = "exposecontroller"
+  repository = "http://chartmuseum.jenkins-x.io"
+  namespace  = "ui"
+  values     = [file("${path.module}/values/expose.yaml")]
+  atomic     = true
+
+  set {
+    name  = "dummy.depends_on"
+    value = var.eks_cluster.cluster_id
+  }
+
+  set {
+    name  = "config.domain"
+    value = var.project_fqdn
+  }
+
+  depends_on = [
+    kubernetes_secret.kubernetes-dashboard
+  ]
+
+  lifecycle {
+    ignore_changes = [keyring]
+  }
+}
+
 resource "helm_release" "expose-monitoring" {
   name       = "expose-monitoring"
   chart      = "exposecontroller"
