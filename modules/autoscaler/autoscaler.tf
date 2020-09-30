@@ -46,7 +46,7 @@ resource "helm_release" "autoscaler" {
   set {
     name  = "image.tag"
     value = var.autoscaler_image_tag
-}
+  }
 
   lifecycle {
     ignore_changes = [keyring]

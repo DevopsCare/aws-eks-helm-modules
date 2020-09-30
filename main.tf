@@ -58,11 +58,8 @@ resource "kubernetes_namespace" "cert_manager" {
   }
 }
 
-data "aws_caller_identity" "current" {
-}
-
-data "aws_region" "current" {
-}
+data "aws_caller_identity" "current" {}
+data "aws_region" "current" {}
 
 locals {
   aws_region = data.aws_region.current.name

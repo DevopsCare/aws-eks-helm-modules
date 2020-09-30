@@ -27,16 +27,16 @@ variable "keycloak_enabled" {
   default = false
 }
 variable "keycloak_domain" {
-  type = string
+  type    = string
   default = ""
 }
 variable "keycloak_client_secret" {
-  type = string
+  type    = string
   default = ""
 }
 variable "oauth_proxy_address" {
   description = "OAuth proxy address"
-  default = ""
+  default     = ""
 }
 
 variable "prometheus_operator_chart_version" {
