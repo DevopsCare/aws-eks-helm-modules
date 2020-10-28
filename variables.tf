@@ -103,11 +103,6 @@ variable "kube2iam_enabled" {
   default = 0
 }
 
-variable "kubernetes_host" {
-}
-
-variable "kubernetes_ca_certificate" {
-}
-
-variable "kubernetes_token" {
-}
+variable "kubernetes_host" {}
+variable "kubernetes_ca_certificate" {}
+variable "kubernetes_token" {}
