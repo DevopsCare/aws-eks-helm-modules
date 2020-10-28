@@ -14,11 +14,6 @@
 * limitations under the License.
 */
 
-data "helm_repository" "jx" {
-  name = "jx"
-  url  = "http://chartmuseum.jenkins-x.io"
-}
-
 resource "helm_release" "ingress" {
   name       = "nginx-ingress"
   chart      = "nginx-ingress"
