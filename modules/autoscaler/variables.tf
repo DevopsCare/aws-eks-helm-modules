@@ -19,11 +19,7 @@ variable "autoscaler_additional_settings" {
 }
 
 variable "autoscaler_chart_version" {
-  default = "7.2.2"
-}
-
-variable "autoscaler_image_tag" {
-  default = "v1.16.4"
+  default = "1.1.0"
 }
 
 variable "autoscaler_enabled" {
@@ -36,11 +32,6 @@ variable "autoscaler_namespace" {
 
 variable "autoscaler_release_name" {
   default = "aws-cluster-autoscaler"
-}
-
-variable "autoscaler_ssl_cert_path" {
-  description = "Path to CA crt file. It is different for EKS and KOPS."
-  default     = "/etc/ssl/certs/ca-bundle.crt"
 }
 
 variable "aws_region" {

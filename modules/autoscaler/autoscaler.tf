@@ -17,8 +17,8 @@
 resource "helm_release" "autoscaler" {
   count      = var.autoscaler_enabled
   name       = var.autoscaler_release_name
-  chart      = "cluster-autoscaler"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
+  chart      = "cluster-autoscaler-chart"
+  repository = "https://kubernetes.github.io/autoscaler"
   namespace  = var.autoscaler_namespace
   version    = var.autoscaler_chart_version
   timeout    = var.timeout
@@ -36,16 +36,6 @@ resource "helm_release" "autoscaler" {
   set {
     name  = "autoDiscovery.clusterName"
     value = var.cluster_name
-  }
-
-  set {
-    name  = "sslCertPath"
-    value = var.autoscaler_ssl_cert_path
-  }
-
-  set {
-    name  = "image.tag"
-    value = var.autoscaler_image_tag
   }
 
   lifecycle {
