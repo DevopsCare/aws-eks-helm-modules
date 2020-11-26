@@ -23,7 +23,7 @@ variable "elasticsearch_port" {
 }
 
 variable "filebeat_chart_version" {
-  default = "7.6.2"
+  default = "7.9.3"
 }
 
 variable "filebeat_namespace" {
