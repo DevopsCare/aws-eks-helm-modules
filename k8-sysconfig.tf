@@ -15,9 +15,11 @@
 */
 
 module "autoscaler" {
-  source       = "./modules/autoscaler"
-  aws_region   = local.aws_region
-  cluster_name = var.cluster_name
+  depends_on        = [var.eks_cluster]
+  source            = "./modules/autoscaler"
+  aws_region        = local.aws_region
+  cluster_name      = var.eks_cluster.cluster_id
+  irsa_provider_url = local.irsa_provider_url
 }
 
 resource "helm_release" "overprovisioner" {

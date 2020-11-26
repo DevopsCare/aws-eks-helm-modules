@@ -15,30 +15,25 @@
 */
 
 resource "helm_release" "autoscaler" {
-  count      = var.autoscaler_enabled
-  name       = var.autoscaler_release_name
-  chart      = "cluster-autoscaler-chart"
-  repository = "https://kubernetes.github.io/autoscaler"
-  namespace  = var.autoscaler_namespace
-  version    = var.autoscaler_chart_version
-  timeout    = var.timeout
-  atomic     = true
+  count         = var.autoscaler_enabled
+  name          = var.autoscaler_release_name
+  chart         = "cluster-autoscaler-chart"
+  repository    = "https://kubernetes.github.io/autoscaler"
+  namespace     = var.autoscaler_namespace
+  version       = var.autoscaler_chart_version
+  timeout       = var.timeout
+  atomic        = true
+  recreate_pods = true
+  lint          = true
 
-  values = [file("${path.module}/files/values.yaml"),
-    var.autoscaler_additional_settings,
+  values = [
+    templatefile("${path.module}/templates/values.yaml",
+      { awsRegion      = var.aws_region,
+        iamRole        = module.iam_assumable_role_admin.this_iam_role_arn,
+        serviceAccount = var.autoscaler_release_name,
+        clusterName    = var.cluster_name
+      }
+    ),
+    var.autoscaler_additional_settings
   ]
-
-  set {
-    name  = "awsRegion"
-    value = var.aws_region
-  }
-
-  set {
-    name  = "autoDiscovery.clusterName"
-    value = var.cluster_name
-  }
-
-  lifecycle {
-    ignore_changes = [keyring]
-  }
 }
