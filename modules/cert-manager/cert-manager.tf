@@ -46,26 +46,22 @@ resource "null_resource" "issuers" {
 }
 
 resource "helm_release" "certmanager" {
-  name       = var.certmanager_release_name
-  chart      = "cert-manager"
-  repository = "https://charts.jetstack.io"
-  namespace  = var.certmanager_namespace
-  version    = var.certmanager_chart_version
-  atomic     = true
+  depends_on    = [null_resource.crd]
+  name          = var.certmanager_release_name
+  chart         = "cert-manager"
+  repository    = "https://charts.jetstack.io"
+  namespace     = var.certmanager_namespace
+  version       = var.certmanager_chart_version
+  atomic        = true
+  recreate_pods = true
 
-  set {
-    name  = "ingressShim.defaultIssuerName"
-    value = var.staging ? "letsencrypt-staging" : "letsencrypt-prod"
-  }
-
-  set {
-    name  = "ingressShim.defaultIssuerKind"
-    value = "ClusterIssuer"
-  }
-
-  depends_on = [null_resource.crd]
-
-  lifecycle {
-    ignore_changes = [keyring]
-  }
+  values = [
+    templatefile("${path.module}/templates/values.yaml",
+      {
+        iamRole           = module.iam_assumable_role_admin.this_iam_role_arn,
+        serviceAccount    = var.certmanager_release_name,
+        defaultIssuerName = var.staging ? "letsencrypt-staging" : "letsencrypt-prod",
+        defaultIssuerKind = "ClusterIssuer"
+    })
+  ]
 }

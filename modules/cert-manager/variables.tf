@@ -42,3 +42,7 @@ variable "kubeconfig" {
 variable "staging" {
   default = true
 }
+
+variable "irsa_provider_url" {
+  type = string
+}

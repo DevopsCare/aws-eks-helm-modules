@@ -15,11 +15,12 @@
 */
 
 module "cert-manager" {
-  source     = "./modules/cert-manager"
-  aws_region = local.aws_region
-  email      = var.letsencrypt-email
-  kubeconfig = "kubeconfig_${var.cluster_name}"
-
+  depends_on            = [var.eks_cluster]
+  source                = "./modules/cert-manager"
+  aws_region            = local.aws_region
+  email                 = var.letsencrypt-email
+  kubeconfig            = "kubeconfig_${var.eks_cluster.cluster_id}"
   certmanager_namespace = kubernetes_namespace.cert_manager.id
+  irsa_provider_url     = local.irsa_provider_url
 }
 
