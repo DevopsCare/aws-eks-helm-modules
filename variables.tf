@@ -76,32 +76,8 @@ variable "keycloak_oauth_proxy_address" {
   default = ""
 }
 
-variable "tiller_version" {
-  default = "v2.14.3"
-}
-
-variable "vpc" {
-}
-
-variable "eks_cluster" {
-}
-
-variable "cluster_name" {
-}
-
-variable "kube2iam_base_role_arn" {
-  type    = string
-  default = "None"
-}
-
-variable "kube2iam_default_role" {
-  type    = string
-  default = "None"
-}
-
-variable "kube2iam_enabled" {
-  default = 0
-}
+variable "vpc" {}
+variable "eks_cluster" {}
 
 variable "kubernetes_host" {}
 variable "kubernetes_ca_certificate" {}
