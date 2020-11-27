@@ -58,9 +58,9 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 locals {
-  aws_region = data.aws_region.current.name
-  vpc_name   = "${var.project_prefix}-vpc"
-
+  aws_region        = data.aws_region.current.name
+  vpc_name          = "${var.project_prefix}-vpc"
+  irsa_provider_url = replace(var.eks_cluster.cluster_oidc_issuer_url, "https://", "")
   vpc_tags = {
     Environment = "${var.project_prefix}-infra"
   }

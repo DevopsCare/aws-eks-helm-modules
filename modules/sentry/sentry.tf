@@ -15,12 +15,14 @@
 */
 
 resource "helm_release" "sentry" {
-  name       = var.sentry_release_name
-  chart      = "sentry"
+  name          = var.sentry_release_name
+  chart         = "sentry"
   repository = "https://charts.helm.sh/stable"
-  namespace  = var.sentry_namespace
-  version    = var.sentry_chart_version
-  atomic     = true
+  namespace     = var.sentry_namespace
+  version       = var.sentry_chart_version
+  atomic        = true
+  recreate_pods = true
+  lint          = true
 
   values = [file("${path.root}/values/sentry.yaml"),
     var.sentry_additional_settings,

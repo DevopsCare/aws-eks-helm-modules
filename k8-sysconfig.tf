@@ -23,6 +23,7 @@ module "autoscaler" {
 }
 
 resource "helm_release" "overprovisioner" {
+  depends_on = [var.eks_cluster]
   name       = "overprovisioner"
   chart      = "cluster-overprovisioner"
   repository = "https://charts.helm.sh/stable"
@@ -32,6 +33,7 @@ resource "helm_release" "overprovisioner" {
 }
 
 resource "helm_release" "metrics-server" {
+  depends_on = [var.eks_cluster]
   name       = "metrics-server"
   chart      = "metrics-server"
   repository = "https://charts.helm.sh/stable"
@@ -44,6 +46,7 @@ resource "helm_release" "metrics-server" {
 }
 
 resource "kubernetes_secret" "kubernetes-dashboard" {
+  depends_on = [var.eks_cluster]
   metadata {
     name      = "kubernetes-dashboard-auth"
     namespace = kubernetes_namespace.ui.id
@@ -70,6 +73,7 @@ resource "helm_release" "kubernetes-dashboard" {
 }
 
 module "external-dns" {
+  depends_on                = [var.eks_cluster]
   source                    = "./modules/external-dns"
   aws_region                = local.aws_region
   external_dns_txt_owner_id = "${var.project_prefix}-dns-public"
@@ -77,6 +81,7 @@ module "external-dns" {
 }
 
 module "prometheus-operator" {
+  depends_on             = [var.eks_cluster]
   source                 = "./modules/prometheus-operator"
   domain                 = var.project_fqdn
   keycloak_enabled       = var.keycloak_enabled
