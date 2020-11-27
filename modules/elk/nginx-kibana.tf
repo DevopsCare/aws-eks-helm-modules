@@ -14,13 +14,13 @@
 * limitations under the License.
 */
 
-resource "helm_release" "nginx-kibana" {
-  name       = var.nginx_kibana_release_name
+resource "helm_release" "nginx-proxy" {
+  name       = var.nginx_release_name
   chart      = "nginx"
   version    = var.nginx_chart_version
   repository = "https://charts.bitnami.com/bitnami"
-  namespace  = var.nginx_kibana_namespace
-  values     = [
+  namespace  = var.nginx_namespace
+  values = [
     data.template_file.nginx-kibana-values.rendered,
   ]
 }
