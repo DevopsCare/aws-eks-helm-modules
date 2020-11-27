@@ -15,6 +15,7 @@
 */
 
 module "elk" {
+  depends_on          = [var.eks_cluster]
   source              = "./modules/elk"
   aws_region          = local.aws_region
   root_domain         = var.project_prefix
@@ -26,11 +27,12 @@ module "elk" {
   instance_count = "2"
   ebs_size       = "35"
 
-  curator_namespace      = kubernetes_namespace.logging.id
-  nginx_kibana_namespace = kubernetes_namespace.logging.id
+  curator_namespace = kubernetes_namespace.logging.id
+  nginx_namespace   = kubernetes_namespace.logging.id
 }
 
 module "filebeat" {
+  depends_on             = [var.eks_cluster]
   source                 = "./modules/filebeat"
   elasticsearch_endpoint = module.elk.elasticsearch_endpoint
   filebeat_namespace     = kubernetes_namespace.logging.id

@@ -23,9 +23,5 @@ resource "helm_release" "elasticsearch-curator" {
   values     = [data.template_file.curator-values.rendered]
   version    = var.curator_chart_version
   atomic     = true
-
-  lifecycle {
-    ignore_changes = [keyring]
-  }
 }
 

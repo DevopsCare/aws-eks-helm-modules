@@ -19,7 +19,7 @@ variable "aws_region" {
 }
 
 variable "root_domain" {
-  default = "weissr.click"
+  type = string
 }
 
 variable "ebs_size" {
@@ -64,15 +64,15 @@ variable "ip_whitelist" {
   default     = []
 }
 
-variable "nginx_kibana_chart_version" {
+variable "nginx_chart_version" {
   default = "5.2.0"
 }
 
-variable "nginx_kibana_release_name" {
+variable "nginx_release_name" {
   default = "kibana"
 }
 
-variable "nginx_kibana_namespace" {
+variable "nginx_namespace" {
   default = "monitoring"
 }
 

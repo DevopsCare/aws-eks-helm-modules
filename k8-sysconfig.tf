@@ -29,15 +29,6 @@ resource "helm_release" "overprovisioner" {
   namespace  = "kube-system"
   values     = [file("${path.module}/values/overprovisioner.yaml")]
   atomic     = true
-
-  set {
-    name  = "dummy.depends_on"
-    value = var.eks_cluster.cluster_id
-  }
-
-  lifecycle {
-    ignore_changes = [keyring]
-  }
 }
 
 resource "helm_release" "metrics-server" {
@@ -50,15 +41,6 @@ resource "helm_release" "metrics-server" {
   values = [
     file("${path.module}/values/metrics-server.yaml"),
   ]
-
-  set {
-    name  = "dummy.depends_on"
-    value = var.eks_cluster.cluster_id
-  }
-
-  lifecycle {
-    ignore_changes = [keyring]
-  }
 }
 
 resource "kubernetes_secret" "kubernetes-dashboard" {
@@ -81,15 +63,6 @@ resource "helm_release" "kubernetes-dashboard" {
   namespace  = kubernetes_namespace.ui.id
   values     = [file("${path.module}/values/dashboard.yaml")]
   atomic     = true
-
-  set {
-    name  = "dummy.depends_on"
-    value = var.eks_cluster.cluster_id
-  }
-
-  lifecycle {
-    ignore_changes = [keyring]
-  }
 
   depends_on = [
     kubernetes_secret.kubernetes-dashboard

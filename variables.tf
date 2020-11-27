@@ -14,11 +14,8 @@
 * limitations under the License.
 */
 
-variable "project_prefix" {
-}
-
-variable "project_fqdn" {
-}
+variable "project_prefix" {}
+variable "project_fqdn" {}
 
 variable "ip_whitelist" {
   type    = list(string)

@@ -15,6 +15,7 @@
 */
 
 resource "helm_release" "ingress" {
+  depends_on = [var.eks_cluster]
   name       = "nginx-ingress"
   chart      = "nginx-ingress"
   repository = "https://charts.helm.sh/stable"
@@ -25,11 +26,6 @@ resource "helm_release" "ingress" {
     additional_annotations = var.nginx_ingress_additional_annotations
   })]
   atomic = true
-
-  set {
-    name  = "dummy.depends_on"
-    value = var.eks_cluster.cluster_id
-  }
 
   set {
     name = "controller.config.whitelist-source-range"
@@ -56,13 +52,10 @@ resource "helm_release" "ingress" {
       ),
     )}}"
   }
-
-  lifecycle {
-    ignore_changes = [keyring]
-  }
 }
 
 resource "helm_release" "expose-default" {
+  depends_on = [var.eks_cluster]
   name       = "expose-default"
   chart      = "exposecontroller"
   repository = "http://chartmuseum.jenkins-x.io"
@@ -71,17 +64,8 @@ resource "helm_release" "expose-default" {
   atomic     = true
 
   set {
-    name  = "dummy.depends_on"
-    value = var.eks_cluster.cluster_id
-  }
-
-  set {
     name  = "config.domain"
     value = var.project_fqdn
-  }
-
-  lifecycle {
-    ignore_changes = [keyring]
   }
 }
 
@@ -106,13 +90,10 @@ resource "helm_release" "expose-ui" {
   depends_on = [
     kubernetes_secret.kubernetes-dashboard
   ]
-
-  lifecycle {
-    ignore_changes = [keyring]
-  }
 }
 
 resource "helm_release" "expose-monitoring" {
+  depends_on = [var.eks_cluster]
   name       = "expose-monitoring"
   chart      = "exposecontroller"
   repository = "http://chartmuseum.jenkins-x.io"
@@ -129,13 +110,10 @@ resource "helm_release" "expose-monitoring" {
     name  = "config.domain"
     value = var.project_fqdn
   }
-
-  lifecycle {
-    ignore_changes = [keyring]
-  }
 }
 
 resource "helm_release" "expose-logging" {
+  depends_on = [var.eks_cluster]
   name       = "expose-default"
   chart      = "exposecontroller"
   repository = "http://chartmuseum.jenkins-x.io"
@@ -151,9 +129,5 @@ resource "helm_release" "expose-logging" {
   set {
     name  = "config.domain"
     value = var.project_fqdn
-  }
-
-  lifecycle {
-    ignore_changes = [keyring]
   }
 }

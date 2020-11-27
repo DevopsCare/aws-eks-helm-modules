@@ -72,8 +72,4 @@ resource "helm_release" "sentry" {
   #   name  = "sentrySecret"
   #   value = data.vault_generic_secret.sentry.data["sentry_sentry_secret"]
   # }
-
-  lifecycle {
-    ignore_changes = [keyring]
-  }
 }
