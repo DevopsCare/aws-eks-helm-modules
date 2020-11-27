@@ -31,7 +31,7 @@ variable "elasticsearch_port" {
 }
 
 variable "elasticsearch_version" {
-  default = "7.1"
+  default = "7.9"
 }
 
 variable "curator_enabled" {
