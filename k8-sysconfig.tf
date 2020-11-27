@@ -100,6 +100,7 @@ module "external-dns" {
   source                    = "./modules/external-dns"
   aws_region                = local.aws_region
   external_dns_txt_owner_id = "${var.project_prefix}-dns-public"
+  irsa_provider_url         = local.irsa_provider_url
 }
 
 module "prometheus-operator" {

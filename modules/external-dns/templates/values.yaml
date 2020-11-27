@@ -15,14 +15,27 @@
 #
 #
 
+aws:
+  region: ${awsRegion}
+
+txtOwnerId:              ${txtOwnerId}
+
 rbac:
   create: true
+serviceAccount:
+  name: "${serviceAccount}"
+  annotations:
+    eks.amazonaws.com/role-arn: "${iamRole}"
+podSecurityContext:
+  fsGroup: 65534
 
 resources:
   limits:
     memory: 50Mi
   requests:
     memory: 50Mi
-    cpu: 10m
+    cpu:    10m
 
-policy: sync
+policy:                  sync
+publishInternalServices: true
+publishHostIP:           true

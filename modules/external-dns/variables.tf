@@ -23,7 +23,7 @@ variable "external_dns_additional_settings" {
 }
 
 variable "external_dns_chart_version" {
-  default = "2.20.12"
+  default = "4.3.1"
 }
 
 variable "external_dns_enabled" {
@@ -41,4 +41,8 @@ variable "external_dns_release_name" {
 variable "external_dns_txt_owner_id" {
   description = "Specify owner which will be put into TXT record"
   default     = ""
+}
+
+variable "irsa_provider_url" {
+  type = string
 }
