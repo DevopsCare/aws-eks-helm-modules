@@ -23,7 +23,7 @@ module "autoscaler" {
 resource "helm_release" "overprovisioner" {
   name       = "overprovisioner"
   chart      = "cluster-overprovisioner"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
+  repository = "https://charts.helm.sh/stable"
   namespace  = "kube-system"
   values     = [file("${path.module}/values/overprovisioner.yaml")]
   atomic     = true
@@ -41,7 +41,7 @@ resource "helm_release" "overprovisioner" {
 resource "helm_release" "metrics-server" {
   name       = "metrics-server"
   chart      = "metrics-server"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
+  repository = "https://charts.helm.sh/stable"
   namespace  = "kube-system"
   atomic     = true
 

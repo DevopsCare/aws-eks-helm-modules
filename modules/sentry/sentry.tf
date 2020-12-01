@@ -17,7 +17,7 @@
 resource "helm_release" "sentry" {
   name       = var.sentry_release_name
   chart      = "sentry"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
+  repository = "https://charts.helm.sh/stable"
   namespace  = var.sentry_namespace
   version    = var.sentry_chart_version
   atomic     = true
