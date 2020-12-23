@@ -14,20 +14,18 @@
 * limitations under the License.
 */
 
-data "aws_caller_identity" "current" {
-}
+data "aws_caller_identity" "current" {}
 
-resource "aws_security_group" "es" {
-  name   = "elasticsearch-${var.root_domain}"
-  vpc_id = var.vpc_id
+module "sg_es" {
+  source  = "terraform-aws-modules/security-group/aws//modules/https-443"
+  version = "~>3.17.0"
+  create  = var.enabled
 
-  ingress {
-    from_port = 443
-    to_port   = 443
-    protocol  = "tcp"
-
-    cidr_blocks = var.ip_whitelist
-  }
+  name                   = "elasticsearch-${var.root_domain}"
+  vpc_id                 = var.vpc_id
+  ingress_cidr_blocks    = var.ip_whitelist
+  auto_ingress_with_self = []
+  auto_egress_rules      = []
 }
 
 resource "aws_iam_service_linked_role" "es" {
@@ -35,6 +33,7 @@ resource "aws_iam_service_linked_role" "es" {
 }
 
 resource "aws_elasticsearch_domain" "es" {
+  count                 = var.enabled ? 1 : 0
   domain_name           = var.root_domain
   elasticsearch_version = var.elasticsearch_version
 
@@ -45,7 +44,7 @@ resource "aws_elasticsearch_domain" "es" {
 
   vpc_options {
     subnet_ids         = var.subnet_ids
-    security_group_ids = [aws_security_group.es.id]
+    security_group_ids = [module.sg_es.this_security_group_id]
   }
 
   ebs_options {

@@ -15,19 +15,21 @@
 */
 
 data "template_file" "curator-values" {
+  count    = var.enabled ? 1 : 0
   template = file("${path.module}/templates/curator-values.yaml.tpl")
 
   vars = {
-    elasticsearch_endpoint = "https://${aws_elasticsearch_domain.es.endpoint}"
+    elasticsearch_endpoint = "https://${aws_elasticsearch_domain.es[0].endpoint}"
     elasticsearch_port     = var.elasticsearch_port
   }
 }
 
 data "template_file" "nginx-kibana-values" {
+  count    = var.enabled ? 1 : 0
   template = file("${path.module}/templates/nginx-kibana-values.yaml.tpl")
 
   vars = {
-    elasticsearch_endpoint = "https://${aws_elasticsearch_domain.es.endpoint}:${var.elasticsearch_port}"
+    elasticsearch_endpoint = "https://${aws_elasticsearch_domain.es[0].endpoint}:${var.elasticsearch_port}"
     expose_enabled         = "true"
     oauth_proxy            = var.oauth_proxy_address
   }

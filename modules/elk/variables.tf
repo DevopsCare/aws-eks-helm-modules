@@ -14,6 +14,11 @@
 * limitations under the License.
 */
 
+variable "enabled" {
+  type    = bool
+  default = true
+}
+
 variable "aws_region" {
   type = string
 }
@@ -88,4 +93,3 @@ variable "subnet_ids" {
 variable "vpc_id" {
   type = string
 }
-

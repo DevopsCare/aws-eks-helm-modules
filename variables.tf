@@ -39,7 +39,7 @@ variable "nginx_ingress_helm_chart_version" {
 }
 
 variable "nginx_ingress_additional_annotations" {
-  type    = map
+  type    = map(any)
   default = {}
 }
 
@@ -51,6 +51,10 @@ variable "letsencrypt-email" {
 variable "extra_policy_arn" {
   type    = string
   default = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
+
+variable "elasticsearch_log_collector_enabled" {
+  default = false
 }
 
 // Keycloak

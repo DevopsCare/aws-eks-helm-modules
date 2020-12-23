@@ -15,13 +15,14 @@
 */
 
 resource "helm_release" "nginx-proxy" {
+  count      = var.enabled ? 1 : 0
   name       = var.nginx_release_name
   chart      = "nginx"
   version    = var.nginx_chart_version
   repository = "https://charts.bitnami.com/bitnami"
   namespace  = var.nginx_namespace
   values = [
-    data.template_file.nginx-kibana-values.rendered,
+    data.template_file.nginx-kibana-values[0].rendered,
   ]
 }
 

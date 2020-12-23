@@ -15,12 +15,12 @@
 */
 
 resource "helm_release" "elasticsearch-curator" {
-  count      = var.curator_enabled
+  count      = var.enabled ? var.curator_enabled : 0
   name       = var.curator_release_name
   chart      = "elasticsearch-curator"
   repository = "https://charts.helm.sh/stable"
   namespace  = var.curator_namespace
-  values     = [data.template_file.curator-values.rendered]
+  values     = [data.template_file.curator-values[0].rendered]
   version    = var.curator_chart_version
   atomic     = true
 }

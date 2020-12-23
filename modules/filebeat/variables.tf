@@ -14,6 +14,11 @@
 * limitations under the License.
 */
 
+variable "enabled" {
+  type    = bool
+  default = true
+}
+
 variable "elasticsearch_endpoint" {
   type = string
 }

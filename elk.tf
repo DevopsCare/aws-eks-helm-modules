@@ -15,6 +15,7 @@
 */
 
 module "elk" {
+  enabled             = var.elasticsearch_log_collector_enabled
   depends_on          = [var.eks_cluster]
   source              = "./modules/elk"
   aws_region          = local.aws_region
@@ -32,6 +33,7 @@ module "elk" {
 }
 
 module "filebeat" {
+  enabled                = var.elasticsearch_log_collector_enabled
   depends_on             = [var.eks_cluster]
   source                 = "./modules/filebeat"
   elasticsearch_endpoint = module.elk.elasticsearch_endpoint

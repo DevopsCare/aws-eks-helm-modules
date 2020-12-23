@@ -15,6 +15,7 @@
 */
 
 resource "helm_release" "filebeat" {
+  count         = var.enabled ? 1 : 0
   name          = var.release_name
   chart         = "filebeat"
   repository    = "https://helm.elastic.co"
