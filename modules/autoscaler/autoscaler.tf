@@ -17,7 +17,7 @@
 resource "helm_release" "autoscaler" {
   count         = var.autoscaler_enabled
   name          = var.autoscaler_release_name
-  chart         = "cluster-autoscaler-chart"
+  chart         = "cluster-autoscaler"
   repository    = "https://kubernetes.github.io/autoscaler"
   namespace     = var.autoscaler_namespace
   version       = var.autoscaler_chart_version
