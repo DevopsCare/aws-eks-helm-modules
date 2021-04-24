@@ -35,7 +35,7 @@ variable "dashboard_basic_auth" {
 
 variable "nginx_ingress_helm_chart_version" {
   type    = string
-  default = "1.36.2"
+  default = "3.29.0"
 }
 
 variable "nginx_ingress_additional_annotations" {

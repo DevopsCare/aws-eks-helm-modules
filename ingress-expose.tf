@@ -16,9 +16,9 @@
 
 resource "helm_release" "ingress" {
   depends_on = [var.eks_cluster]
-  name       = "nginx-ingress"
-  chart      = "nginx-ingress"
-  repository = "https://charts.helm.sh/stable"
+  name       = "ingress-nginx"
+  chart      = "ingress-nginx"
+  repository = "https://kubernetes.github.io/ingress-nginx"
   version    = var.nginx_ingress_helm_chart_version
   namespace  = "kube-system"
 
