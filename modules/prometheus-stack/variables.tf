@@ -27,6 +27,18 @@ variable "grafana_ingress_name" {
   default = "grafana"
 }
 
+variable "prometheus_stack_chart_version" {
+  default = "15.1.3"
+}
+
+variable "prometheus_stack_namespace" {
+  default = "monitoring"
+}
+
+variable "prometheus_stack_release_name" {
+  default = "prometheus"
+}
+
 // Keycloak
 variable "keycloak_enabled" {
   default = false
@@ -42,16 +54,4 @@ variable "keycloak_client_secret" {
 variable "oauth_proxy_address" {
   description = "OAuth proxy address"
   default     = ""
-}
-
-variable "prometheus_operator_chart_version" {
-  default = "8.12.13"
-}
-
-variable "prometheus_operator_namespace" {
-  default = "monitoring"
-}
-
-variable "prometheus_operator_release_name" {
-  default = "prometheus-operator"
 }

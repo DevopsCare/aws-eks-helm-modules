@@ -14,13 +14,13 @@
 * limitations under the License.
 */
 
-resource "helm_release" "prometheus-operator" {
-  name          = var.prometheus_operator_release_name
-  chart         = "prometheus-operator"
-  repository = "https://charts.helm.sh/stable"
-  namespace     = var.prometheus_operator_namespace
-  version       = var.prometheus_operator_chart_version
-  values        = [data.template_file.prometheus-operator-values.rendered]
+resource "helm_release" "prometheus-stack" {
+  name          = var.prometheus_stack_release_name
+  chart         = "kube-prometheus-stack"
+  repository    = "https://prometheus-community.github.io/helm-charts"
+  namespace     = var.prometheus_stack_namespace
+  version       = var.prometheus_stack_chart_version
+  values        = [data.template_file.prometheus-stack-values.rendered]
   atomic        = true
   recreate_pods = true
 }

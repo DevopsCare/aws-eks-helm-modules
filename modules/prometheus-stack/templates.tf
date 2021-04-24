@@ -14,8 +14,8 @@
 * limitations under the License.
 */
 
-data "template_file" "prometheus-operator-values" {
-  template = file("${path.module}/templates/prometheus-operator-values.yaml.tpl")
+data "template_file" "prometheus-stack-values" {
+  template = file("${path.module}/templates/prometheus-values.yaml.tpl")
 
   vars = {
     grafana_ingress_name = var.grafana_ingress_name
@@ -25,7 +25,7 @@ data "template_file" "prometheus-operator-values" {
     keycloak_enabled = var.keycloak_enabled
     keycloak_domain  = var.keycloak_domain
     client_secret    = var.keycloak_client_secret
-    namespace        = var.prometheus_operator_namespace
+    namespace        = var.prometheus_stack_namespace
     oauth_proxy      = var.oauth_proxy_address
   }
 }

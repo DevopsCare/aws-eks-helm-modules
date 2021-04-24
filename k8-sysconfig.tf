@@ -80,9 +80,9 @@ module "external-dns" {
   irsa_provider_url         = local.irsa_provider_url
 }
 
-module "prometheus-operator" {
+module "prometheus-stack" {
   depends_on             = [var.eks_cluster]
-  source                 = "./modules/prometheus-operator"
+  source                 = "./modules/prometheus-stack"
   domain                 = var.project_fqdn
   admin_password         = local.admin_password
   keycloak_enabled       = var.keycloak_enabled
@@ -90,6 +90,5 @@ module "prometheus-operator" {
   keycloak_domain        = var.keycloak_domain
   oauth_proxy_address    = var.keycloak_oauth_proxy_address
 
-  prometheus_operator_namespace = kubernetes_namespace.monitoring.id
+  prometheus_stack_namespace = kubernetes_namespace.monitoring.id
 }
-
