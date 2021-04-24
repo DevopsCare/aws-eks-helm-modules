@@ -25,6 +25,9 @@ extraArgs:
   - --enable-skip-login
   - --enable-insecure-login
 
+metricsScraper:
+  enabled: true
+
 resources:
   limits:
     cpu: 1

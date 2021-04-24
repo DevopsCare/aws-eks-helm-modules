@@ -38,11 +38,8 @@ resource "helm_release" "metrics-server" {
   chart      = "metrics-server"
   repository = "https://charts.helm.sh/stable"
   namespace  = "kube-system"
+  values     = [file("${path.module}/values/metrics-server.yaml")]
   atomic     = true
-
-  values = [
-    file("${path.module}/values/metrics-server.yaml"),
-  ]
 }
 
 resource "kubernetes_secret" "kubernetes-dashboard" {
@@ -59,6 +56,7 @@ resource "kubernetes_secret" "kubernetes-dashboard" {
 }
 
 resource "helm_release" "kubernetes-dashboard" {
+  depends_on = [kubernetes_secret.kubernetes-dashboard]
   name       = "kubernetes-dashboard"
   chart      = "kubernetes-dashboard"
   repository = "https://kubernetes.github.io/dashboard/"
@@ -66,10 +64,6 @@ resource "helm_release" "kubernetes-dashboard" {
   namespace  = kubernetes_namespace.ui.id
   values     = [file("${path.module}/values/dashboard.yaml")]
   atomic     = true
-
-  depends_on = [
-    kubernetes_secret.kubernetes-dashboard
-  ]
 }
 
 module "external-dns" {

@@ -24,7 +24,7 @@ variable "ip_whitelist" {
 
 variable "dashboard_helm_chart_version" {
   type    = string
-  default = "2.3.0"
+  default = "4.0.3"
 }
 
 # default: admin bT2s3yNtK8oQPMeR
