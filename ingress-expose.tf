@@ -21,11 +21,11 @@ resource "helm_release" "ingress" {
   repository = "https://kubernetes.github.io/ingress-nginx"
   version    = var.nginx_ingress_helm_chart_version
   namespace  = "kube-system"
+  atomic     = true
 
   values = [templatefile("${path.module}/templates/nginx.yaml.tmpl", {
     additional_annotations = var.nginx_ingress_additional_annotations
   })]
-  atomic = true
 
   set {
     name = "controller.config.whitelist-source-range"
@@ -70,6 +70,7 @@ resource "helm_release" "expose-default" {
 }
 
 resource "helm_release" "expose-ui" {
+  depends_on = [kubernetes_secret.kubernetes-dashboard]
   name       = "expose-default"
   chart      = "exposecontroller"
   repository = "http://chartmuseum.jenkins-x.io"
@@ -78,18 +79,9 @@ resource "helm_release" "expose-ui" {
   atomic     = true
 
   set {
-    name  = "dummy.depends_on"
-    value = var.eks_cluster.cluster_id
-  }
-
-  set {
     name  = "config.domain"
     value = var.project_fqdn
   }
-
-  depends_on = [
-    kubernetes_secret.kubernetes-dashboard
-  ]
 }
 
 resource "helm_release" "expose-monitoring" {
@@ -100,11 +92,6 @@ resource "helm_release" "expose-monitoring" {
   namespace  = "monitoring"
   values     = [file("${path.module}/values/expose.yaml")]
   atomic     = true
-
-  set {
-    name  = "dummy.depends_on"
-    value = var.eks_cluster.cluster_id
-  }
 
   set {
     name  = "config.domain"
@@ -120,11 +107,6 @@ resource "helm_release" "expose-logging" {
   namespace  = "logging"
   values     = [file("${path.module}/values/expose.yaml")]
   atomic     = true
-
-  set {
-    name  = "dummy.depends_on"
-    value = var.eks_cluster.cluster_id
-  }
 
   set {
     name  = "config.domain"

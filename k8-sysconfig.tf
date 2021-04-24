@@ -42,19 +42,6 @@ resource "helm_release" "metrics-server" {
   atomic     = true
 }
 
-resource "kubernetes_secret" "kubernetes-dashboard" {
-  depends_on = [var.eks_cluster]
-  metadata {
-    name      = "kubernetes-dashboard-auth"
-    namespace = kubernetes_namespace.ui.id
-  }
-
-  # https://kubernetes.github.io/ingress-nginx/examples/auth/basic/
-  data = {
-    auth = var.dashboard_basic_auth
-  }
-}
-
 resource "helm_release" "kubernetes-dashboard" {
   depends_on = [kubernetes_secret.kubernetes-dashboard]
   name       = "kubernetes-dashboard"

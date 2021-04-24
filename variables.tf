@@ -27,12 +27,6 @@ variable "dashboard_helm_chart_version" {
   default = "4.0.3"
 }
 
-# default: admin bT2s3yNtK8oQPMeR
-variable "dashboard_basic_auth" {
-  type    = string
-  default = "admin:$apr1$FmDTIlPt$vaQ6Fi9vTNFxJXvYyDc6o0"
-}
-
 variable "nginx_ingress_helm_chart_version" {
   type    = string
   default = "3.29.0"

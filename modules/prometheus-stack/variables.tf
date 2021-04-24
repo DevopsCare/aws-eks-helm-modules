@@ -19,8 +19,9 @@ variable "domain" {
 }
 
 variable "admin_password" {
-  type    = string
-  default = "admin"
+  type      = string
+  default   = "admin"
+  sensitive = true
 }
 
 variable "grafana_ingress_name" {
