@@ -84,6 +84,7 @@ module "prometheus-operator" {
   depends_on             = [var.eks_cluster]
   source                 = "./modules/prometheus-operator"
   domain                 = var.project_fqdn
+  admin_password         = local.admin_password
   keycloak_enabled       = var.keycloak_enabled
   keycloak_client_secret = var.keycloak_client_secret
   keycloak_domain        = var.keycloak_domain

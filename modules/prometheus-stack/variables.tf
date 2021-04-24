@@ -18,6 +18,11 @@ variable "domain" {
   type = string
 }
 
+variable "admin_password" {
+  type    = string
+  default = "admin"
+}
+
 variable "grafana_ingress_name" {
   default = "grafana"
 }

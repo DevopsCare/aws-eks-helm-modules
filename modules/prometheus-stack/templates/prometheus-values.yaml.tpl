@@ -26,7 +26,7 @@ alertmanager:
   %{ if keycloak_enabled }
         nginx.ingress.kubernetes.io/auth-signin: https://${oauth_proxy}/oauth2/start?rd=$request_uri
         nginx.ingress.kubernetes.io/auth-url: https://${oauth_proxy}/oauth2/auth
-   %{ endif }
+  %{ endif }
 
 
   resources:
@@ -36,7 +36,6 @@ alertmanager:
     requests:
       cpu: 10m
       memory: 400Mi
-
 
 prometheusOperator:
   resources:
@@ -48,7 +47,7 @@ prometheusOperator:
       memory: 100Mi
 
 grafana:
-  adminPassword: sweetTapDancing
+  adminPassword: ${admin_password}
   persistence:
     enabled: true
 
@@ -195,6 +194,7 @@ defaultRules:
   rules:
     etcd: false
     kubeScheduler: false
+
 kubeControllerManager:
   enabled: false
 kubeEtcd:

@@ -20,6 +20,7 @@ data "template_file" "prometheus-operator-values" {
   vars = {
     grafana_ingress_name = var.grafana_ingress_name
     domain               = var.domain
+    admin_password       = var.admin_password
 
     keycloak_enabled = var.keycloak_enabled
     keycloak_domain  = var.keycloak_domain
