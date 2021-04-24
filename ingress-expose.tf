@@ -33,8 +33,8 @@ resource "helm_release" "ingress" {
       "\\,",
       concat(
         var.ip_whitelist,
-        local.github_meta_hooks,
-        local.atlassian_inbound,
+        var.whitelist_github_hooks ? data.github_ip_ranges.current.hooks : [],
+        var.whitelist_atlassian_outgoing ? local.atlassian_outgoing : [],
         var.vpc.nat_public_ips,
       ),
     )
@@ -46,8 +46,8 @@ resource "helm_release" "ingress" {
       ",",
       concat(
         var.ip_whitelist,
-        local.github_meta_hooks,
-        local.atlassian_inbound,
+        var.whitelist_github_hooks ? data.github_ip_ranges.current.hooks : [],
+        var.whitelist_atlassian_outgoing ? local.atlassian_outgoing : [],
         formatlist("%s/32", var.vpc.nat_public_ips),
       ),
     )}}"

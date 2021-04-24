@@ -22,6 +22,16 @@ variable "ip_whitelist" {
   default = []
 }
 
+variable "whitelist_github_hooks" {
+  type    = bool
+  default = true
+}
+
+variable "whitelist_atlassian_outgoing" {
+  type    = bool
+  default = false
+}
+
 variable "dashboard_helm_chart_version" {
   type    = string
   default = "4.0.3"
