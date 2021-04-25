@@ -26,7 +26,7 @@ resource "random_password" "apr1_salt" {
 }
 
 resource "htpasswd_password" "admin_password_hash" {
-  password = random_password.admin_password.result
+  password = local.admin_password
   salt     = random_password.apr1_salt.result
 }
 
