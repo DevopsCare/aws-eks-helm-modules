@@ -28,7 +28,7 @@ resource "helm_release" "external-dns" {
     templatefile("${path.module}/templates/values.yaml",
       {
         awsRegion      = var.aws_region,
-        iamRole        = module.iam_assumable_role_admin.this_iam_role_arn,
+        iam_role       = module.iam_assumable_role_admin.this_iam_role_arn,
         serviceAccount = var.external_dns_release_name,
         txtOwnerId     = var.external_dns_txt_owner_id
       }

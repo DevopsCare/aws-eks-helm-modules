@@ -29,7 +29,7 @@ resource "helm_release" "autoscaler" {
   values = [
     templatefile("${path.module}/templates/values.yaml",
       { awsRegion      = var.aws_region,
-        iamRole        = module.iam_assumable_role_admin.this_iam_role_arn,
+        iam_role       = module.iam_assumable_role_admin.this_iam_role_arn,
         serviceAccount = var.autoscaler_release_name,
         clusterName    = var.cluster_name
       }

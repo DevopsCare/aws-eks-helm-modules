@@ -61,6 +61,16 @@ variable "elasticsearch_log_collector_enabled" {
   default = false
 }
 
+variable "aws_ebs_csi_driver_helm_chart_version" {
+  type    = string
+  default = "0.10.2"
+}
+
+variable "aws_efs_csi_driver_helm_chart_version" {
+  type    = string
+  default = "1.2.2"
+}
+
 // Keycloak
 variable "keycloak_enabled" {
   default = false

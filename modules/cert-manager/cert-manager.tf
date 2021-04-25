@@ -58,7 +58,7 @@ resource "helm_release" "certmanager" {
   values = [
     templatefile("${path.module}/templates/values.yaml",
       {
-        iamRole           = module.iam_assumable_role_admin.this_iam_role_arn,
+        iam_role          = module.iam_assumable_role_admin.this_iam_role_arn,
         serviceAccount    = var.certmanager_release_name,
         defaultIssuerName = var.staging ? "letsencrypt-staging" : "letsencrypt-prod",
         defaultIssuerKind = "ClusterIssuer"

@@ -30,7 +30,7 @@ rbac:
   serviceAccount:
     name: "${serviceAccount}"
     annotations:
-      eks.amazonaws.com/role-arn: "${iamRole}"
+      eks.amazonaws.com/role-arn: "${iam_role}"
 
 autoDiscovery:
   enabled:     true

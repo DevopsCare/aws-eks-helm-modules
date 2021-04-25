@@ -1,0 +1,26 @@
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+serviceAccount:
+  controller:
+    name: efs-csi-controller-sa
+    annotations:
+      eks.amazonaws.com/role-arn: "${iam_role}"
+
+# This is totally taken from samples and can be wrong
+storageClasses:
+  - name: efs-sc
+    mountOptions:
+      - tls
+    parameters:
+      provisioningMode: efs-ap
+      fileSystemId: fs-1122aabb
+      directoryPerms: "700"
+      gidRangeStart: "1000"
+      gidRangeEnd: "2000"
+      basePath: "/dynamic_provisioning"
