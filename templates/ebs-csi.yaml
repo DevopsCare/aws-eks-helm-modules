@@ -1,36 +1,28 @@
-enableVolumeScheduling: true
-enableVolumeResizing: true
-enableVolumeSnapshot: false
-
-resources:
-  limits:
-    cpu: 100m
-    memory: 128Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi
-
-topologySpreadConstraints:
-  - maxSkew: 1
-    topologyKey: topology.kubernetes.io/zone
-    whenUnsatisfiable: ScheduleAnyway
-  - maxSkew: 1
-    topologyKey: kubernetes.io/hostname
-    whenUnsatisfiable: ScheduleAnyway
-
-serviceAccount:
-  controller:
+controller:
+  serviceAccount:
     name: ebs-csi-controller-sa
     annotations:
       eks.amazonaws.com/role-arn: "${iam_role}"
-  snapshot:
-    name: ebs-snapshot-controller
-    annotations:
-      eks.amazonaws.com/role-arn: "${iam_role}"
-  node:
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+node:
+  serviceAccount:
     name: ebs-csi-node-sa
     annotations:
       eks.amazonaws.com/role-arn: "${iam_role}"
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
 
 storageClasses:
   - name: ebs-sc
