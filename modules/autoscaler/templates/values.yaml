@@ -15,7 +15,7 @@
 #
 #
 
-awsRegion:         ${awsRegion}
+awsRegion: ${awsRegion}
 
 extraArgs:
   skip-nodes-with-system-pods:     "false"
@@ -40,8 +40,8 @@ priorityClassName: system-cluster-critical
 resources:
   limits:
     cpu:    100m
-    memory: 500Mi
+    memory: 600Mi
   requests:
     cpu:    100m
-    memory: 300Mi
+    memory: 600Mi
 
