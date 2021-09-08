@@ -58,7 +58,7 @@ resource "helm_release" "expose-default" {
   depends_on = [var.eks_cluster]
   name       = "expose-default"
   chart      = "exposecontroller"
-  repository = "http://chartmuseum.jenkins-x.io"
+  repository = "https://jenkins-x-charts.github.io/v2/"
   namespace  = "default"
   values     = [file("${path.module}/values/expose.yaml")]
   atomic     = true
@@ -73,7 +73,7 @@ resource "helm_release" "expose-ui" {
   depends_on = [kubernetes_secret.kubernetes-dashboard]
   name       = "expose-default"
   chart      = "exposecontroller"
-  repository = "http://chartmuseum.jenkins-x.io"
+  repository = "https://jenkins-x-charts.github.io/v2/"
   namespace  = "ui"
   values     = [file("${path.module}/values/expose.yaml")]
   atomic     = true
@@ -88,7 +88,7 @@ resource "helm_release" "expose-monitoring" {
   depends_on = [var.eks_cluster]
   name       = "expose-monitoring"
   chart      = "exposecontroller"
-  repository = "http://chartmuseum.jenkins-x.io"
+  repository = "https://jenkins-x-charts.github.io/v2/"
   namespace  = "monitoring"
   values     = [file("${path.module}/values/expose.yaml")]
   atomic     = true
@@ -103,7 +103,7 @@ resource "helm_release" "expose-logging" {
   depends_on = [var.eks_cluster]
   name       = "expose-default"
   chart      = "exposecontroller"
-  repository = "http://chartmuseum.jenkins-x.io"
+  repository = "https://jenkins-x-charts.github.io/v2/"
   namespace  = "logging"
   values     = [file("${path.module}/values/expose.yaml")]
   atomic     = true
