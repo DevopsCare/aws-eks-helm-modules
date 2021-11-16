@@ -40,17 +40,6 @@ serverBlock: |-
   server {
     listen 0.0.0.0:8080;
 
-    location /_plugin/kibana/ {
-      proxy_set_header Accept-Encoding "";
-      sub_filter_types *;
-      sub_filter_once off;
-      proxy_buffer_size 128k;
-      proxy_buffers 4 256k;
-      proxy_busy_buffers_size 256k;
-
-      proxy_pass ${elasticsearch_endpoint}/_plugin/kibana/;
-    }
-
     location / {
       proxy_set_header Accept-Encoding "";
       sub_filter_types *;
@@ -59,7 +48,7 @@ serverBlock: |-
       proxy_buffers 4 256k;
       proxy_busy_buffers_size 256k;
 
-      proxy_pass ${elasticsearch_endpoint}/_plugin/kibana/;
+      proxy_pass ${elasticsearch_endpoint};
     }
 
     location /health-check {

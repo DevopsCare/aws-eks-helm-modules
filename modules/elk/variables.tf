@@ -36,7 +36,7 @@ variable "elasticsearch_port" {
 }
 
 variable "elasticsearch_version" {
-  default = "7.9"
+  default = "OpenSearch_1.0"
 }
 
 variable "curator_enabled" {
@@ -60,7 +60,7 @@ variable "instance_count" {
 }
 
 variable "instance_type" {
-  default = "t2.small.elasticsearch"
+  default = "t3.small.elasticsearch"
 }
 
 variable "ip_whitelist" {
