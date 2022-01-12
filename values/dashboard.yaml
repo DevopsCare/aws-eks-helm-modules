@@ -23,7 +23,6 @@ rbac:
 
 extraArgs:
   - --enable-skip-login
-  - --enable-insecure-login
 
 metricsScraper:
   enabled: true
@@ -39,11 +38,13 @@ resources:
 service:
   annotations:
     fabric8.io/expose: "true"
-    fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx\ncert-manager.io/cluster-issuer: letsencrypt-prod\nnginx.ingress.kubernetes.io/auth-type: basic\nnginx.ingress.kubernetes.io/auth-secret: kube-system/cadmium-basic-auth\nnginx.ingress.kubernetes.io/auth-realm: Cadmium project credentials"
-
-ingress.enabled: false
-
-protocolHttp: true
+    fabric8.io/ingress.annotations: |
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/auth-type: basic
+      nginx.ingress.kubernetes.io/auth-secret: kube-system/cadmium-basic-auth
+      nginx.ingress.kubernetes.io/auth-realm: Cadmium project credentials
 
 pinnedCRDs:
   - kind: customresourcedefinition

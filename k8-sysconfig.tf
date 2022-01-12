@@ -36,7 +36,8 @@ resource "helm_release" "metrics-server" {
   depends_on = [var.eks_cluster]
   name       = "metrics-server"
   chart      = "metrics-server"
-  repository = "https://charts.helm.sh/stable"
+  repository = "https://kubernetes-sigs.github.io/metrics-server/"
+  version    = var.metrics_helm_chart_version
   namespace  = "kube-system"
   values     = [file("${path.module}/values/metrics-server.yaml")]
   atomic     = true

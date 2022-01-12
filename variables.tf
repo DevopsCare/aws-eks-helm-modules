@@ -34,7 +34,12 @@ variable "whitelist_atlassian_outgoing" {
 
 variable "dashboard_helm_chart_version" {
   type    = string
-  default = "4.3.1"
+  default = "5.0.5"
+}
+
+variable "metrics_helm_chart_version" {
+  type    = string
+  default = "3.7.0"
 }
 
 variable "nginx_ingress_helm_chart_version" {
