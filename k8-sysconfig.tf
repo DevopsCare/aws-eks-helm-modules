@@ -74,3 +74,43 @@ module "prometheus-stack" {
 
   prometheus_stack_namespace = kubernetes_namespace.monitoring.id
 }
+
+# Allow reading of Prometheus CRDs by Dashboard
+resource "kubernetes_cluster_role" "kubernetes-dashboard-prometheus" {
+  metadata {
+    name = "kubernetes-dashboard-prometheus"
+  }
+
+  rule {
+    api_groups = ["apiextensions.k8s.io"]
+    resources  = ["customresourcedefinitions"]
+    verbs      = ["get", "list"]
+  }
+
+  rule {
+    api_groups = ["apiextensions.k8s.io"]
+    resources  = ["customresourcedefinitions"]
+    verbs      = ["get", "list"]
+  }
+  rule {
+    api_groups = ["monitoring.coreos.com"]
+    resources  = ["podmonitors", "prometheuses", "prometheusrules", "servicemonitors"]
+    verbs      = ["get", "list"]
+  }
+}
+
+resource "kubernetes_cluster_role_binding" "kubernetes-dashboard-prometheus" {
+  metadata {
+    name = "kubernetes-dashboard-prometheus"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = kubernetes_cluster_role.kubernetes-dashboard-prometheus.id
+  }
+  subject {
+    kind      = "ServiceAccount"
+    name      = "kubernetes-dashboard"
+    namespace = "ui"
+  }
+}

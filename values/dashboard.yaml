@@ -49,9 +49,17 @@ service:
 pinnedCRDs:
   - kind: customresourcedefinition
     name: prometheuses.monitoring.coreos.com
+    displayName: Prometheus
+    namespaced: true
   - kind: customresourcedefinition
     name: podmonitors.monitoring.coreos.com
+    displayName: PodMonitor
+    namespaced: true
   - kind: customresourcedefinition
     name: servicemonitors.monitoring.coreos.com
+    displayName: ServiceMonitor
+    namespaced: true
   - kind: customresourcedefinition
     name: prometheusrules.monitoring.coreos.com
+    displayName: PrometheusRule
+    namespaced: true
