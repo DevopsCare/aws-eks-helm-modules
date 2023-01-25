@@ -23,7 +23,7 @@ variable "external_dns_additional_settings" {
 }
 
 variable "external_dns_chart_version" {
-  default = "4.3.1"
+  default = "6.12.2"
 }
 
 variable "external_dns_enabled" {
