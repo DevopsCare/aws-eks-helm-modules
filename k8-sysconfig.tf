@@ -18,8 +18,9 @@ module "autoscaler" {
   depends_on        = [var.eks_cluster]
   source            = "./modules/autoscaler"
   aws_region        = local.aws_region
-  cluster_name      = var.eks_cluster.cluster_id
-  irsa_provider_url = local.irsa_provider_url
+  cluster_name      = var.eks_cluster.cluster_name
+  autoscaler_additional_settings = "image: { tag: v1.24.0 }"
+  irsa_provider_arn = var.eks_cluster.oidc_provider_arn
 }
 
 resource "helm_release" "overprovisioner" {
