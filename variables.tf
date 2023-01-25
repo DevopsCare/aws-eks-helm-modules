@@ -44,7 +44,7 @@ variable "metrics_helm_chart_version" {
 
 variable "nginx_ingress_helm_chart_version" {
   type    = string
-  default = "3.29.0"
+  default = "4.4.0"
 }
 
 variable "nginx_ingress_additional_annotations" {

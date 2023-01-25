@@ -20,6 +20,11 @@ rbac:
 controller:
   replicaCount: 1
 
+  ingressClassResource:
+    default: true
+
+  watchIngressWithoutClass: true  # Compat setting for <1.22
+
   config:
     use-proxy-protocol: "true"
     hsts: "false"
