@@ -19,7 +19,7 @@ variable "autoscaler_additional_settings" {
 }
 
 variable "autoscaler_chart_version" {
-  default = "9.9.2"
+  default = "9.21.1"
 }
 
 variable "autoscaler_enabled" {
@@ -38,7 +38,7 @@ variable "aws_region" {
   type = string
 }
 
-variable "irsa_provider_url" {
+variable "irsa_provider_arn" {
   type = string
 }
 
