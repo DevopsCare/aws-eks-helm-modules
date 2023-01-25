@@ -31,3 +31,6 @@ prometheus:
 ingressShim:
   defaultIssuerKind: ClusterIssuer
   defaultIssuerName: ${defaultIssuerName}
+  defaultIssuerGroup: cert-manager.io
+
+installCRDs: true

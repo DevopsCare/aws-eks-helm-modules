@@ -13,40 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
-resource "null_resource" "crd" {
-  triggers = {
-    crd = sha1(file("${path.module}/files/crd.yaml"))
-  }
-
-  provisioner "local-exec" {
-    command = <<EOT
-      kubectl apply --kubeconfig ${var.kubeconfig} -f ${path.module}/files/crd.yaml
-    EOT
-  }
-}
-
-resource "local_file" "issuers" {
-  content  = data.template_file.issuers.rendered
-  filename = "${path.module}/issuers.yaml"
-}
-
-resource "null_resource" "issuers" {
-  triggers = {
-    issuers = local_file.issuers.id
-  }
-
-  provisioner "local-exec" {
-    command = <<EOT
-      kubectl apply --kubeconfig ${var.kubeconfig} -f ${path.module}/issuers.yaml
-    EOT
-  }
-
-  depends_on = [local_file.issuers, null_resource.crd, helm_release.certmanager]
-}
-
 resource "helm_release" "certmanager" {
-  depends_on    = [null_resource.crd]
   name          = var.certmanager_release_name
   chart         = "cert-manager"
   repository    = "https://charts.jetstack.io"

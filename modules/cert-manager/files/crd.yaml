@@ -16,8 +16,12 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    meta.helm.sh/release-namespace: cert-manager
+    meta.helm.sh/release-name: cert-manager
     cert-manager.io/inject-ca-from-secret: cert-manager/cert-manager-webhook-ca
   labels:
+    meta.helm.sh/release-name: cert-manager
+    app.kubernetes.io/managed-by: Helm
     app: cert-manager
     app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/name: cert-manager
@@ -821,8 +825,12 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    meta.helm.sh/release-namespace: cert-manager
+    meta.helm.sh/release-name: cert-manager
     cert-manager.io/inject-ca-from-secret: cert-manager/cert-manager-webhook-ca
   labels:
+    meta.helm.sh/release-name: cert-manager
+    app.kubernetes.io/managed-by: Helm
     app: cert-manager
     app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/name: cert-manager
@@ -2494,8 +2502,12 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    meta.helm.sh/release-namespace: cert-manager
+    meta.helm.sh/release-name: cert-manager
     cert-manager.io/inject-ca-from-secret: cert-manager/cert-manager-webhook-ca
   labels:
+    meta.helm.sh/release-name: cert-manager
+    app.kubernetes.io/managed-by: Helm
     app: cert-manager
     app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/name: cert-manager
@@ -2991,12 +3003,16 @@ spec:
                                   here will override the in-built values.
                                 properties:
                                   annotations:
+                                    meta.helm.sh/release-namespace: cert-manager
+                                    meta.helm.sh/release-name: cert-manager
                                     additionalProperties:
                                       type: string
                                     description: Annotations that should be added
                                       to the created ACME HTTP01 solver ingress.
                                     type: object
                                   labels:
+                                    meta.helm.sh/release-name: cert-manager
+                                    app.kubernetes.io/managed-by: Helm
                                     additionalProperties:
                                       type: string
                                     description: Labels that should be added to the
@@ -3024,12 +3040,16 @@ spec:
                                   override the in-built values.
                                 properties:
                                   annotations:
+                                    meta.helm.sh/release-namespace: cert-manager
+                                    meta.helm.sh/release-name: cert-manager
                                     additionalProperties:
                                       type: string
                                     description: Annotations that should be added
                                       to the create ACME HTTP01 solver pods.
                                     type: object
                                   labels:
+                                    meta.helm.sh/release-name: cert-manager
+                                    app.kubernetes.io/managed-by: Helm
                                     additionalProperties:
                                       type: string
                                     description: Labels that should be added to the
@@ -4488,12 +4508,16 @@ spec:
                                   here will override the in-built values.
                                 properties:
                                   annotations:
+                                    meta.helm.sh/release-namespace: cert-manager
+                                    meta.helm.sh/release-name: cert-manager
                                     additionalProperties:
                                       type: string
                                     description: Annotations that should be added
                                       to the created ACME HTTP01 solver ingress.
                                     type: object
                                   labels:
+                                    meta.helm.sh/release-name: cert-manager
+                                    app.kubernetes.io/managed-by: Helm
                                     additionalProperties:
                                       type: string
                                     description: Labels that should be added to the
@@ -4521,12 +4545,16 @@ spec:
                                   override the in-built values.
                                 properties:
                                   annotations:
+                                    meta.helm.sh/release-namespace: cert-manager
+                                    meta.helm.sh/release-name: cert-manager
                                     additionalProperties:
                                       type: string
                                     description: Annotations that should be added
                                       to the create ACME HTTP01 solver pods.
                                     type: object
                                   labels:
+                                    meta.helm.sh/release-name: cert-manager
+                                    app.kubernetes.io/managed-by: Helm
                                     additionalProperties:
                                       type: string
                                     description: Labels that should be added to the
@@ -5985,12 +6013,16 @@ spec:
                                   here will override the in-built values.
                                 properties:
                                   annotations:
+                                    meta.helm.sh/release-namespace: cert-manager
+                                    meta.helm.sh/release-name: cert-manager
                                     additionalProperties:
                                       type: string
                                     description: Annotations that should be added
                                       to the created ACME HTTP01 solver ingress.
                                     type: object
                                   labels:
+                                    meta.helm.sh/release-name: cert-manager
+                                    app.kubernetes.io/managed-by: Helm
                                     additionalProperties:
                                       type: string
                                     description: Labels that should be added to the
@@ -6018,12 +6050,16 @@ spec:
                                   override the in-built values.
                                 properties:
                                   annotations:
+                                    meta.helm.sh/release-namespace: cert-manager
+                                    meta.helm.sh/release-name: cert-manager
                                     additionalProperties:
                                       type: string
                                     description: Annotations that should be added
                                       to the create ACME HTTP01 solver pods.
                                     type: object
                                   labels:
+                                    meta.helm.sh/release-name: cert-manager
+                                    app.kubernetes.io/managed-by: Helm
                                     additionalProperties:
                                       type: string
                                     description: Labels that should be added to the
@@ -7482,12 +7518,16 @@ spec:
                                   here will override the in-built values.
                                 properties:
                                   annotations:
+                                    meta.helm.sh/release-namespace: cert-manager
+                                    meta.helm.sh/release-name: cert-manager
                                     additionalProperties:
                                       type: string
                                     description: Annotations that should be added
                                       to the created ACME HTTP01 solver ingress.
                                     type: object
                                   labels:
+                                    meta.helm.sh/release-name: cert-manager
+                                    app.kubernetes.io/managed-by: Helm
                                     additionalProperties:
                                       type: string
                                     description: Labels that should be added to the
@@ -7515,12 +7555,16 @@ spec:
                                   override the in-built values.
                                 properties:
                                   annotations:
+                                    meta.helm.sh/release-namespace: cert-manager
+                                    meta.helm.sh/release-name: cert-manager
                                     additionalProperties:
                                       type: string
                                     description: Annotations that should be added
                                       to the create ACME HTTP01 solver pods.
                                     type: object
                                   labels:
+                                    meta.helm.sh/release-name: cert-manager
+                                    app.kubernetes.io/managed-by: Helm
                                     additionalProperties:
                                       type: string
                                     description: Labels that should be added to the
@@ -8519,8 +8563,12 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    meta.helm.sh/release-namespace: cert-manager
+    meta.helm.sh/release-name: cert-manager
     cert-manager.io/inject-ca-from-secret: cert-manager/cert-manager-webhook-ca
   labels:
+    meta.helm.sh/release-name: cert-manager
+    app.kubernetes.io/managed-by: Helm
     app: cert-manager
     app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/name: cert-manager
@@ -9115,6 +9163,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -9122,6 +9172,8 @@ spec:
                                             ingress.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -9152,6 +9204,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -9159,6 +9213,8 @@ spec:
                                             pods.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -11087,6 +11143,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -11094,6 +11152,8 @@ spec:
                                             ingress.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -11124,6 +11184,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -11131,6 +11193,8 @@ spec:
                                             pods.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -13059,6 +13123,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -13066,6 +13132,8 @@ spec:
                                             ingress.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -13096,6 +13164,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -13103,6 +13173,8 @@ spec:
                                             pods.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -15033,6 +15105,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -15040,6 +15114,8 @@ spec:
                                             ingress.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -15070,6 +15146,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -15077,6 +15155,8 @@ spec:
                                             pods.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -16448,8 +16528,12 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    meta.helm.sh/release-namespace: cert-manager
+    meta.helm.sh/release-name: cert-manager
     cert-manager.io/inject-ca-from-secret: cert-manager/cert-manager-webhook-ca
   labels:
+    meta.helm.sh/release-name: cert-manager
+    app.kubernetes.io/managed-by: Helm
     app: cert-manager
     app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/name: cert-manager
@@ -17043,6 +17127,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -17050,6 +17136,8 @@ spec:
                                             ingress.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -17080,6 +17168,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -17087,6 +17177,8 @@ spec:
                                             pods.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -19014,6 +19106,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -19021,6 +19115,8 @@ spec:
                                             ingress.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -19051,6 +19147,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -19058,6 +19156,8 @@ spec:
                                             pods.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -20985,6 +21085,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -20992,6 +21094,8 @@ spec:
                                             ingress.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -21022,6 +21126,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -21029,6 +21135,8 @@ spec:
                                             pods.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -22958,6 +23066,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -22965,6 +23075,8 @@ spec:
                                             ingress.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -22995,6 +23107,8 @@ spec:
                                         in-built values.
                                       properties:
                                         annotations:
+                                          meta.helm.sh/release-namespace: cert-manager
+                                          meta.helm.sh/release-name: cert-manager
                                           additionalProperties:
                                             type: string
                                           description: Annotations that should be
@@ -23002,6 +23116,8 @@ spec:
                                             pods.
                                           type: object
                                         labels:
+                                          meta.helm.sh/release-name: cert-manager
+                                          app.kubernetes.io/managed-by: Helm
                                           additionalProperties:
                                             type: string
                                           description: Labels that should be added
@@ -24373,8 +24489,12 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    meta.helm.sh/release-namespace: cert-manager
+    meta.helm.sh/release-name: cert-manager
     cert-manager.io/inject-ca-from-secret: cert-manager/cert-manager-webhook-ca
   labels:
+    meta.helm.sh/release-name: cert-manager
+    app.kubernetes.io/managed-by: Helm
     app: cert-manager
     app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/name: cert-manager

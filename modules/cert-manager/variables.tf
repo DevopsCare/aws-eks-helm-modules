@@ -19,7 +19,7 @@ variable "aws_region" {
 }
 
 variable "certmanager_chart_version" {
-  default = "v1.0.0"
+  default = "v1.10.1"
 }
 
 variable "certmanager_namespace" {
@@ -33,10 +33,6 @@ variable "certmanager_release_name" {
 variable "email" {
   description = "Email will be used for letsencrypt registration"
   type        = string
-}
-
-variable "kubeconfig" {
-  type = string
 }
 
 variable "staging" {
