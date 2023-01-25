@@ -29,7 +29,7 @@ variable "grafana_ingress_name" {
 }
 
 variable "prometheus_stack_chart_version" {
-  default = "15.1.3"
+  default = "43.2.1"
 }
 
 variable "prometheus_stack_namespace" {
