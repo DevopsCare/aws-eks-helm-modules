@@ -48,7 +48,7 @@ resource "helm_release" "kubernetes-dashboard" {
   depends_on = [kubernetes_secret.kubernetes-dashboard]
   name       = "kubernetes-dashboard"
   chart      = "kubernetes-dashboard"
-  repository = "https://kubernetes.github.io/dashboard/"
+  repository = "https://kubernetes.github.io/dashboard"
   version    = var.dashboard_helm_chart_version
   namespace  = kubernetes_namespace.ui.id
   values     = [file("${path.module}/values/dashboard.yaml")]

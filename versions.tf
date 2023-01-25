@@ -30,7 +30,7 @@ terraform {
     }
     htpasswd = {
       source  = "loafoe/htpasswd"
-      version = "~> 0.4"
+      version = "~> 1"
     }
     github = {
       source  = "integrations/github"
