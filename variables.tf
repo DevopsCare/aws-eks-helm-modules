@@ -101,4 +101,3 @@ variable "eks_cluster" {}
 
 variable "kubernetes_host" {}
 variable "kubernetes_ca_certificate" {}
-variable "kubernetes_token" {}
